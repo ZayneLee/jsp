@@ -1,3 +1,5 @@
+<%@page import="model.MemberDAO"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -23,19 +25,9 @@
 	<%
 	mbean.setHobby(texthobby);
 	
-	// 오라클에 접속하는 소스 작성
-	String id = "System";
-	String pass = "123456";
-	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	
-	try {
-		// 1. 해당 데이터 베이스를 사용한다고 선언(클래스를 등록=오라클용을 사용)
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		// 2. 해당 데이터 베이스에 접속
-		Connection con = DriverManager.getConnection(url, id, pass);
-	} catch(Exception e) {
-		e.printStackTrace();	
-	}
+	// 데이터 베이스 클래스 객체 생성
+	MemberDAO mdao = new MemberDAO();
+	mdao.insertMember(mbean);
 	%>
 	
 	오라클에 접속 성공~
