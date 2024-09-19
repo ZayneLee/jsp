@@ -30,7 +30,7 @@
 	
 	try {
 		// 1. 해당 데이터 베이스를 사용한다고 선언(클래스를 등록=오라클용을 사용)
-		Class.forName("oracla.jdbc.driver.OracleDriver");
+		Class.forName("oracle.jdbc.driver.OracleDriver");
 		// 2. 해당 데이터 베이스에 접속
 		Connection con = DriverManager.getConnection(url, id, pass);
 	} catch(Exception e) {
