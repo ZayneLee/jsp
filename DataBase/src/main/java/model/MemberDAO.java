@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Vector;
 
 public class MemberDAO {
 	
@@ -53,5 +54,12 @@ public class MemberDAO {
 		} catch(Exception e) {
 			e.printStackTrace();	
 		}
+	}
+	
+	public Vector<MemberBean> allSelectMember() {
+		
+		Vector<MemberBean> v = new Vector<>();
+		
+		return v;
 	}
 }

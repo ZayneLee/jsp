@@ -28,8 +28,10 @@
 	// 데이터 베이스 클래스 객체 생성
 	MemberDAO mdao = new MemberDAO();
 	mdao.insertMember(mbean);
+	
+	// 회원 가입이 되었다면 회원 정보를 보여주는 페이지로 이동시킴
+	response.sendRedirect("MemberList.jsp");
 	%>
 	
-	오라클에 접속 성공~
 </body>
 </html>
