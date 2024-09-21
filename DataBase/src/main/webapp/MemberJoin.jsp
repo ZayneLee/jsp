@@ -64,7 +64,7 @@
 				</tr>
 				<tr height="50">
 					<td align="center" colspan="2"><input type="submit"
-						value="회원가입"> <input type="reset" value="취소"></td>
+						value="회원가입"> <button type="button" onclick="location.href='MemberList.jsp'">취소</button></td>
 				</tr>
 			</table>
 		</form>
