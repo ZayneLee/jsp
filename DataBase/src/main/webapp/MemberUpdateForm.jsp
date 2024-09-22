@@ -37,7 +37,9 @@
 					<td width="150"><input type="password" name="pass1" ></td>
 				</tr>
 				<tr>
-					<td align="center" colspan="2"><input type="submit"
+					<td align="center" colspan="2">
+					<input type="hidden" name="id" value="<%= mbean.getId()%>">
+					<input type="submit"
 						value="회원 수정하기"> &nbsp;&nbsp;
 						<button type="button" onclick="location.href='MemberList.jsp'">회원 전체 목록
 							보기</button></td>
