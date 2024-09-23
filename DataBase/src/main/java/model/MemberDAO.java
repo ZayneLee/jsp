@@ -141,4 +141,32 @@ public class MemberDAO {
 
 		return pass;
 	}
+	
+	public void updateMember(MemberBean bean) {
+		try {
+			getCon();
+			String sql = "update member set email=?, tel=? where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getEmail());
+			pstmt.setString(2, bean.getTel());
+			pstmt.setString(3, bean.getId());
+			pstmt.executeUpdate();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteMember(MemberBean bean) {
+		try {
+			getCon();
+			String sql = "delete from member where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getId());
+			pstmt.executeUpdate();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

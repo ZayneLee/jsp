@@ -18,7 +18,7 @@
 	String pass = mdao.getPass(id);
 
 	if (mbean.getPass1() != null && mbean.getPass1().equals(pass)) {
-		mdao.updateMember(mbean);
+		mdao.deleteMember(mbean);
 		response.sendRedirect("MemberList.jsp");
 	} else {
 	%>
