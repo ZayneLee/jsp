@@ -17,7 +17,7 @@
 					<td width="250"><input type="password" name="pass"></td>
 				</tr>
 				<tr height="50">
-					<td colspan="2" align="center" ><input type="checkbox" name="save">아이디 저장</td>
+					<td colspan="2" align="center" ><input type="checkbox" name="save" value="1">아이디 저장</td>
 				</tr>
 				<tr height="50">
 					<td colspan="2" align="center" ><input type="submit" value="로그인"></td>
