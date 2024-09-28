@@ -27,16 +27,12 @@ public class MemberDAO {
 		try {
 			// 외부에서 데이터 읽기
 			Context initctx = new InitialContext();
-			System.out.println("111111");
 			// 톰캣 서버에 정보를 담아 놓은 곳으로 이동
 			Context envctx = (Context) initctx.lookup("java:comp/env");
-			System.out.println("222222");
 			// 데이터 소스 객체를 선언
 			DataSource ds = (DataSource) envctx.lookup("jdbc/pool");
-			System.out.println("333333");
 			// 데이터 소스를 기준으로 커넥션 연결
 			con = ds.getConnection();
-			System.out.println("444444");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
