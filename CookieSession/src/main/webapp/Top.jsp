@@ -6,6 +6,13 @@
 <body>
 
 <%
+	String logout = request.getParameter("logout");
+
+	if(logout != null) {
+		session.setAttribute("id", null);
+		session.setMaxInactiveInterval(0);
+	}
+
 	String id = (String) session.getAttribute("id");
 
 	if(id == null) {
@@ -36,7 +43,7 @@
 					<%
 				} else {
 					%>
-					<%=id %> 님 <button onclick="location.href='SessionMain.jsp?center=SessionLogout.jsp'">로그아웃</button>
+					<%=id %> 님 <button onclick="location.href='SessionMain.jsp?logout=1'">로그아웃</button>
 					<%
 				}
 				%>
