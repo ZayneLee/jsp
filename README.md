@@ -26,7 +26,7 @@ Learn more about my professional experiences on [LinkedIn](https://www.linkedin.
   <a href="https://www.java.com/en/" target="_blank" rel="noreferrer">
     <img src="https://www.vectorlogo.zone/logos/java/java-icon.svg" alt="Java" width="40" height="40"/>
   </a>
-  <a href="https://www.jetbrains.com/" target="_blank" rel="noreferrer">
+  <a href="https://www.eclipse.org/" target="_blank" rel="noreferrer">
     <img src="https://www.vectorlogo.zone/logos/eclipse/eclipse-icon.svg" alt="Eclipse" width="40" height="40"/>
   </a>
   <a href="https://git-scm.com/" target="_blank" rel="noreferrer">
