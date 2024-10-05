@@ -5,7 +5,7 @@
 <body>
 	<center>
 		<h2> 파일 업로드 </h2>
-		<form action="FileUploadProc.jsp" method="multipart/form-data">
+		<form action="FileUploadProc.jsp" method="post" enctype="multipart/form-data">
 			<table width="350" border="1" bordercolor="gray">
 				<tr height="40">
 					<td width="150">이름</td>
