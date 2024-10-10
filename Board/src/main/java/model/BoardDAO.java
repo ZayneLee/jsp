@@ -66,9 +66,9 @@ public class BoardDAO {
 	
 	public Vector<BoardBean> getAllBoard() {
 		Vector<BoardBean> v = new Vector<BoardBean>();
+		getCon();
 		
 		try {
-			getCon();
 			String sql = "select * from board order by ref desc, re_step asc";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -76,6 +76,15 @@ public class BoardDAO {
 				BoardBean bean = new BoardBean();
 				bean.setNum(rs.getInt(1));
 				bean.setWriter(rs.getString(2));
+				bean.setEmail(rs.getString(3));
+				bean.setSubject(rs.getString(4));
+				bean.setPassword(rs.getString(5));
+				bean.setReg_date(rs.getDate(6).toString());
+				bean.setRef(rs.getInt(7));
+				bean.setRe_step(rs.getInt(8));
+				bean.setRe_level(rs.getInt(9));
+				bean.setReadcount(rs.getInt(10));
+				bean.setContent(rs.getString(11));
 				v.add(bean);
 			}
 			con.close();
