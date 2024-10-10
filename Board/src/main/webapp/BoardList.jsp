@@ -10,11 +10,5 @@
 	BoardDAO bdao = new BoardDAO();
 	Vector<BoardBean> v = bdao.getAllBoard();
 	%>
-	
-	<center>
-		<h2>전체 게시글 보기</h2>
-		<table width="600" border="1">
-		</table>
-	</center>
 </body>
 </html>
