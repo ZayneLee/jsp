@@ -9,7 +9,6 @@
 	<%
 	BoardDAO bdao = new BoardDAO();
 	Vector<BoardBean> v = bdao.getAllBoard();
-	System.out.println(v.size());
 	%>
 	
 	<center>
