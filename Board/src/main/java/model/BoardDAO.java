@@ -72,7 +72,7 @@ public class BoardDAO {
 			String sql = "select * from board order by ref desc, re_step asc";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
 				BoardBean bean = new BoardBean();
 				bean.setNum(rs.getInt(1));
 				bean.setWriter(rs.getString(2));
