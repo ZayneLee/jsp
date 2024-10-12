@@ -31,7 +31,7 @@
 					<td align="center" colspan="2">
 						<input type="submit" value="글쓰기"> &nbsp;&nbsp;
 						<input type="reset" value="다시작성"> &nbsp;&nbsp;
-						<button onclick="location.href='BoardList.jsp'">전체 게시글보기</button>
+						<button type="button" onclick="location.href='BoardList.jsp'">전체 게시글보기</button>
 					</td>
 				</tr>
 			</table>
