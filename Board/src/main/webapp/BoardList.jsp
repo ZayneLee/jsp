@@ -9,9 +9,11 @@
 	<%
 	BoardDAO bdao = new BoardDAO();
 	Vector<BoardBean> v = bdao.getAllBoard();
+	System.out.println(v.size());
 	%>
 	
 	<center>
+		<h2>게시글 보기</h2>
 		<table width="700" border="1">
 			<tr>
 				<td align="center" width="150">번호</td>
@@ -23,7 +25,6 @@
 			<%
 			for (int i = 0; i < v.size(); i++) {
 				BoardBean bean = v.get(i);
-				System.out.println("작성자 이름 목록 : " + bean.getWriter());
 			%>
 			<tr>
 				<td align="center" width="150"><%=i+1%></td>
