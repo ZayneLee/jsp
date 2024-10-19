@@ -28,7 +28,7 @@
 			<tr>
 				<td align="center" width="150"><%=i+1%></td>
 				<td align="left" width="150">
-					<a href="BoardInfo.jsp?id=<%=bean.getNum()%>"> <%=bean.getSubject()%></a>
+					<a href="BoardInfo.jsp?num=<%=bean.getNum()%>"> <%=bean.getSubject()%></a>
 				</td>
 				<td align="center" width="150"><%=bean.getWriter()%></td>
 				<td align="center" width="150"><%=bean.getReg_date().toString()%></td>
