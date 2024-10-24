@@ -9,7 +9,11 @@ import hello.hello_spring.repository.MemoryMemberRepository;
 
 public class MemberService {
 
-	private MemberRepository memberRepository = new MemoryMemberRepository();
+	private MemberRepository memberRepository;
+
+	public MemberService(MemberRepository memberRepository) {
+		this.memberRepository = memberRepository;
+	}
 
 	public Long join(Member member) {
 
