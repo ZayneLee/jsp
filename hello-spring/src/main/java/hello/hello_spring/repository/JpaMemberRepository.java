@@ -5,11 +5,12 @@ import java.util.Optional;
 
 import hello.hello_spring.domain.Member;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
-public class JpaMemberRepository implements MemberRepository{
-	
+public class JpaMemberRepository implements MemberRepository {
+
 	private final EntityManager em;
-	
+
 	public JpaMemberRepository(EntityManager em) {
 		this.em = em;
 	}
@@ -22,20 +23,20 @@ public class JpaMemberRepository implements MemberRepository{
 
 	@Override
 	public Optional<Member> findById(Long id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		Member member = em.find(Member.class, id);
+		return Optional.ofNullable(member);
 	}
 
 	@Override
 	public Optional<Member> findByName(String name) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		List<Member> result = em.createQuery("select m from Member m where m.name = :name", Member.class)
+				.setParameter("name", name).getResultList();
+		return result.stream().findAny();
 	}
 
 	@Override
 	public List<Member> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return em.createQuery("select m from Member m", Member.class).getResultList();
 	}
 
 }
