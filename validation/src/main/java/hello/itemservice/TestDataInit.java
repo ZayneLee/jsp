@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class TestDataInit {
 
-	@Autowired
     private final ItemRepository itemRepository;
     
+    @Autowired
     public TestDataInit(ItemRepository itemRepository) {
 		this.itemRepository = itemRepository;
 	}

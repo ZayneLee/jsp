@@ -17,9 +17,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ValidationItemControllerV1 {
 
-	@Autowired
+	
     private final ItemRepository itemRepository;
 
+    @Autowired
     public ValidationItemControllerV1(ItemRepository itemRepository) {
 		this.itemRepository = itemRepository;
 	}
