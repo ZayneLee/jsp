@@ -47,6 +47,35 @@ public class ValidationItemControllerV1 {
 
     @PostMapping("/add")
     public String addItem(@ModelAttribute Item item, RedirectAttributes redirectAttributes) {
+
+	Map<String, String> errors = new HashMap<>();
+	
+	if (!StringUtils.hasText(item.getItemName())) {
+		errors.put("itemName","ItemName Required");
+	}
+	
+	if (item.getPrice() == null || item.getPrice() < 1000 || item.getPrice() > 1000000) {
+		errors.put("price","price should be from 1000 to 1000000");
+	}
+	
+	if (item.getQuantity() == null || item.getQuantity() > 9999) {
+		errors.put("quantity","Quantity should be upto 9999");
+	}
+	
+	if (item.getPrice() != null && item.getQuantity() != null) {
+		int resultPrice = item.getPrice() * item.getQuantity();
+		if (resultPrice < 10000)
+		{
+			errors.put("globalError","price * quantity should be more than 10,000. current price is " + resultPrice);
+		}
+	}
+	
+	if (!errors.isEmpty())
+	{
+		model.addAttribute("errors", errors);
+		return "validation/v1/addForm";
+	}
+	    
         Item savedItem = itemRepository.save(item);
         redirectAttributes.addAttribute("itemId", savedItem.getId());
         redirectAttributes.addAttribute("status", true);
