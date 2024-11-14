@@ -1,19 +1,24 @@
 package hello.itemservice.web.validation;
 
-import hello.itemservice.domain.item.Item;
-import hello.itemservice.domain.item.ItemRepository;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import hello.itemservice.domain.item.Item;
+import hello.itemservice.domain.item.ItemRepository;
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/validation/v2/items")
@@ -48,32 +53,30 @@ public class ValidationItemControllerV2 {
 	}
 
 	@PostMapping("/add")
-	public String addItem(@ModelAttribute Item item, RedirectAttributes redirectAttributes, Model model) {
-
-		Map<String, String> errors = new HashMap<>();
+	public String addItemV1(@ModelAttribute Item item, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes, Model model) {
 
 		if (!StringUtils.hasText(item.getItemName())) {
-			errors.put("itemName", "ItemName Required");
+			bindingResult.addError(new FieldError("itme", "itemName", "ItemName Required"));
 		}
 
 		if (item.getPrice() == null || item.getPrice() < 1000 || item.getPrice() > 1000000) {
-			errors.put("price", "price should be from 1000 to 1000000");
+			bindingResult.addError(new FieldError("itme", "price", "price should be from 1000 to 1000000"));
 		}
 
 		if (item.getQuantity() == null || item.getQuantity() > 9999) {
-			errors.put("quantity", "Quantity should be upto 9999");
+			bindingResult.addError(new FieldError("itme", "quantity", "Quantity should be upto 9999"));
 		}
 
 		if (item.getPrice() != null && item.getQuantity() != null) {
 			int resultPrice = item.getPrice() * item.getQuantity();
 			if (resultPrice < 10000) {
-				errors.put("globalError",
-						"price * quantity should be more than 10,000. current price is " + resultPrice);
+				bindingResult.addError(new ObjectError("item",
+						"price * quantity should be more than 10,000. current price is " + resultPrice));
 			}
 		}
 
-		if (!errors.isEmpty()) {
-			model.addAttribute("errors", errors);
+		if (bindingResult.hasErrors()) {
 			return "validation/v2/addForm";
 		}
 
