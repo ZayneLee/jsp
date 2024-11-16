@@ -52,7 +52,7 @@ public class ValidationItemControllerV2 {
 		return "validation/v2/addForm";
 	}
 
-	@PostMapping("/add")
+//	@PostMapping("/add")
 	public String addItemV1(@ModelAttribute Item item, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes, Model model) {
 
@@ -66,6 +66,43 @@ public class ValidationItemControllerV2 {
 
 		if (item.getQuantity() == null || item.getQuantity() > 9999) {
 			bindingResult.addError(new FieldError("itme", "quantity", "Quantity should be upto 9999"));
+		}
+
+		if (item.getPrice() != null && item.getQuantity() != null) {
+			int resultPrice = item.getPrice() * item.getQuantity();
+			if (resultPrice < 10000) {
+				bindingResult.addError(new ObjectError("item",
+						"price * quantity should be more than 10,000. current price is " + resultPrice));
+			}
+		}
+
+		if (bindingResult.hasErrors()) {
+			return "validation/v2/addForm";
+		}
+
+		Item savedItem = itemRepository.save(item);
+		redirectAttributes.addAttribute("itemId", savedItem.getId());
+		redirectAttributes.addAttribute("status", true);
+		return "redirect:/validation/v2/items/{itemId}";
+	}
+
+	@PostMapping("/add")
+	public String addItemV2(@ModelAttribute Item item, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes, Model model) {
+
+		if (!StringUtils.hasText(item.getItemName())) {
+			bindingResult.addError(
+					new FieldError("itme", "itemName", item.getItemName(), false, null, null, "ItemName Required"));
+		}
+
+		if (item.getPrice() == null || item.getPrice() < 1000 || item.getPrice() > 1000000) {
+			bindingResult.addError(new FieldError("itme", "price", item.getPrice(), false, null, null,
+					"price should be from 1000 to 1000000"));
+		}
+
+		if (item.getQuantity() == null || item.getQuantity() > 9999) {
+			bindingResult.addError(new FieldError("itme", "quantity", item.getQuantity(), false, null, null,
+					"Quantity should be upto 9999"));
 		}
 
 		if (item.getPrice() != null && item.getQuantity() != null) {
